@@ -74,6 +74,12 @@ openBtn.href = nick ? (isAndroid ? androidLink : appLink) : (isAndroid ? PLAY : 
 if (store) getBtn.href = store;
 else { getBtn.removeAttribute('href'); getBtn.textContent = 'iPhone version coming soon'; getBtn.style.opacity = '0.6'; }
 if (!nick) { document.getElementById('note').textContent = ''; if (!isAndroid) openBtn.style.display = 'none'; }
+// On a computer: FreeTime is a phone app, so no "Open FreeTime" button (it cannot open anything there).
+if (!isAndroid && !isIOS) {
+  openBtn.style.display = 'none';
+  getBtn.textContent = 'Get it on Google Play';
+  document.getElementById('note').textContent = 'FreeTime is a phone app. Open this link on your phone' + (nick ? ' to add @' + nick + '.' : '.');
+}
 
 // Android: open the app straight away (or Google Play if it is not installed).
 // iPhone: wait for a tap, because Safari shows an error box if the app is not installed.
