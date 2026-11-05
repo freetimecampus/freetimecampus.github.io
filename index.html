@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FreeTime</title>
+<meta name="description" content="See when your friends are free and meet students on your campus.">
+<meta property="og:title" content="FreeTime 👋">
+<meta property="og:description" content="See when your friends are free and meet students on your campus.">
+<meta property="og:image" content="https://freetimecampus.github.io/icon.png">
+<meta property="og:url" content="https://freetimecampus.github.io/">
+<meta property="og:type" content="website">
+<link rel="icon" href="icon.png">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #1C1C1E; color: #fff; font-family: -apple-system, system-ui, "Segoe UI", Roboto, Arial, sans-serif; }
+  .wrap { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 20px; text-align: center; }
+  img.logo { width: 96px; height: 96px; border-radius: 24px; margin-bottom: 18px; }
+  h1 { font-size: 26px; margin: 0 0 8px; }
+  .nick { display: inline-block; background: #2C2C30; border-radius: 14px; padding: 8px 16px; font-size: 20px; font-weight: 800; margin: 10px 0 6px; }
+  p { color: #B8B8BE; font-size: 16px; line-height: 1.5; margin: 6px 0; max-width: 340px; }
+  a.btn { display: block; width: 100%; max-width: 340px; padding: 16px; border-radius: 16px; font-size: 17px; font-weight: 800; text-decoration: none; margin-top: 12px; }
+  .main { background: #D7F36B; color: #1C1C1E; }
+  .alt { background: #2C2C30; color: #fff; }
+  .small { font-size: 13px; color: #8A8A90; margin-top: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="logo" src="icon.png" alt="FreeTime">
+  <h1 id="title">Add me on FreeTime 👋</h1>
+  <div class="nick" id="nick" style="display:none"></div>
+  <p>See when your friends are free and meet students on your campus.</p>
+  <a class="btn main" id="open" href="#">Open FreeTime</a>
+  <a class="btn alt" id="get" href="#">Get the app</a>
+  <p class="small" id="note">Already have FreeTime? Tap “Open FreeTime”.</p>
+</div>
+<script>
+// ---- Settings ----
+var PKG = 'com.freetimecampus.app';
+var PLAY = 'https://play.google.com/store/apps/details?id=' + PKG;
+var APPSTORE = ''; // put the App Store link here when Apple approves the app
+
+// ---- The nickname from the link: ...github.io/?u=nickname ----
+var q = new URLSearchParams(location.search);
+var nick = (q.get('u') || '').trim().replace(/^@/, '');
+try { if (!/^[\p{L}\p{M}\p{N}_.\-]{1,40}$/u.test(nick)) nick = ''; } catch (e) { if (/[<>"'&\s]/.test(nick)) nick = ''; }
+
+var ua = navigator.userAgent || '';
+var isAndroid = /Android/i.test(ua);
+var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+
+// LINE's own browser cannot open apps; this asks LINE to open the page in the phone's normal browser instead.
+var leaving = false;
+if (/ Line\//i.test(ua) && q.get('openExternalBrowser') !== '1') {
+  leaving = true;
+  q.set('openExternalBrowser', '1');
+  location.replace(location.pathname + '?' + q.toString());
+}
+
+if (nick) {
+  document.getElementById('nick').textContent = '@' + nick;
+  document.getElementById('nick').style.display = 'inline-block';
+}
+
+var appLink = 'freetime://add/' + encodeURIComponent(nick);
+var store = isIOS ? (APPSTORE || '') : PLAY;
+// On Android this one link opens the app if it is installed, and Google Play if it is not.
+var androidLink = 'intent://add/' + encodeURIComponent(nick) + '#Intent;scheme=freetime;package=' + PKG + ';S.browser_fallback_url=' + encodeURIComponent(PLAY) + ';end';
+
+var openBtn = document.getElementById('open');
+var getBtn = document.getElementById('get');
+openBtn.href = nick ? (isAndroid ? androidLink : appLink) : (isAndroid ? PLAY : (store || '#'));
+if (store) getBtn.href = store;
+else { getBtn.removeAttribute('href'); getBtn.textContent = 'iPhone version coming soon'; getBtn.style.opacity = '0.6'; }
+if (!nick) { document.getElementById('note').textContent = ''; if (!isAndroid) openBtn.style.display = 'none'; }
+
+// Android: open the app straight away (or Google Play if it is not installed).
+// iPhone: wait for a tap, because Safari shows an error box if the app is not installed.
+if (nick && isAndroid && !leaving) {
+  setTimeout(function () { location.href = androidLink; }, 300);
+}
+</script>
+</body>
+</html>
