@@ -81,6 +81,16 @@ if (!isAndroid && !isIOS) {
   document.getElementById('note').textContent = 'FreeTime is a phone app. Open this link on your phone' + (nick ? ' to add @' + nick + '.' : '.');
 }
 
+// iPhone: Safari shows an error box when FreeTime is not installed and "Open FreeTime" is tapped,
+// so on iPhone the big button goes to the App Store (it shows "Open" there if FreeTime is installed),
+// and opening the app straight away is a small second button for students who already have it.
+if (isIOS && store) {
+  getBtn.className = 'btn main'; getBtn.textContent = 'Get FreeTime on the App Store';
+  openBtn.className = 'btn alt'; openBtn.textContent = 'I already have FreeTime';
+  if (openBtn.parentNode) openBtn.parentNode.insertBefore(getBtn, openBtn);
+  document.getElementById('note').textContent = nick ? 'Already have FreeTime? Tap "I already have FreeTime" to add @' + nick + '.' : '';
+}
+
 // Android: open the app straight away (or Google Play if it is not installed).
 // iPhone: wait for a tap, because Safari shows an error box if the app is not installed.
 if (nick && isAndroid && !leaving) {
