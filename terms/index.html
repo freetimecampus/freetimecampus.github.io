@@ -11,6 +11,7 @@
   html, body { margin: 0; background: #1C1C1E; color: #F2F2F4; font-family: -apple-system, system-ui, "Segoe UI", Roboto, Arial, sans-serif; }
   .wrap { max-width: 720px; margin: 0 auto; padding: 32px 20px 60px; }
   header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  header a { display: flex; flex-shrink: 0; }
   header img { width: 52px; height: 52px; border-radius: 14px; }
   h1 { font-size: 28px; margin: 0; }
   h2 { font-size: 19px; margin: 30px 0 8px; color: #D7F36B; }
@@ -19,18 +20,20 @@
   li { margin: 4px 0; }
   .date { color: #8A8A90; font-size: 14px; }
   a { color: #D7F36B; }
-  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #2C2C30; color: #8A8A90; font-size: 14px; }
+  footer { margin-top: 40px; padding-top: 8px; border-top: 1px solid #2C2C30; color: #8A8A90; font-size: 14px; overflow-wrap: anywhere; display: flex; flex-wrap: wrap; column-gap: 18px; }
+  footer a { display: inline-block; padding: 10px 0; }
+  a { overflow-wrap: anywhere; }
   @media (prefers-color-scheme: light) {
     html, body { background: #F6F5F2; color: #1C1C1E; }
     p, li { color: #3A3A40; }
     h2, a { color: #4F6B00; }
-    footer { border-color: #E2E0DA; }
+    footer, .date { border-color: #E2E0DA; color: #6A6A70; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
-<header><img src="../icon.png" alt=""><h1>Terms of Use</h1></header>
+<header><a href="../"><img src="../icon.png" alt="FreeTime home" width="52" height="52"></a><h1>Terms of Use</h1></header>
 <p class="date">Last updated: November 7, 2026.</p>
 <h2>1. Agreeing to these terms</h2>
 <p>By creating an account or using FreeTime, you agree to these Terms of Use and to the FreeTime Privacy Policy. If you do not agree, please do not use the app.</p>
@@ -83,7 +86,7 @@
 <p>We may update these terms. If we do, we will change the date at the top of this page. If you keep using the app, you accept the new terms.</p>
 <h2>12. Contact</h2>
 <p>Questions or reports: <a href="mailto:freetime.app.help@gmail.com">freetime.app.help@gmail.com</a></p>
-<footer>FreeTime &middot; <a href="../privacy/">Privacy Policy</a> &middot; <a href="mailto:freetime.app.help@gmail.com">freetime.app.help@gmail.com</a></footer>
+<footer><a href="../">FreeTime</a> <a href="../privacy/">Privacy Policy</a> <a href="mailto:freetime.app.help@gmail.com">freetime.app.help@gmail.com</a></footer>
 </div>
 </body>
 </html>
