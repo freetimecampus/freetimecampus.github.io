@@ -3,64 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>FreeTime - Who's Free | See which friends are free between classes</title>
-<meta name="description" content="FreeTime - Who's Free is a free app for Assumption University students. See which friends are free between classes, chat with your classmates, meet free students at an Open table, and get seminar reminders.">
-<link rel="canonical" href="https://freetimecampus.github.io/">
-<meta name="theme-color" content="#1C1C1E">
-<meta property="og:site_name" content="FreeTime">
-<meta property="og:title" content="FreeTime - Who's Free">
-<meta property="og:description" content="See which friends are free between classes and meet students on your campus. Free on the App Store and Google Play.">
+<title>FreeTime</title>
+<meta name="description" content="See when your friends are free and meet students on your campus.">
+<meta property="og:title" content="FreeTime 👋">
+<meta property="og:description" content="See when your friends are free and meet students on your campus.">
 <meta property="og:image" content="https://freetimecampus.github.io/icon.png">
-<meta property="og:image:width" content="256">
-<meta property="og:image:height" content="256">
-<meta property="og:image:alt" content="FreeTime app icon">
 <meta property="og:url" content="https://freetimecampus.github.io/">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<link rel="icon" type="image/png" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.png">
 <style>
   * { box-sizing: border-box; }
-  html, body { margin: 0; background: #1C1C1E; color: #fff; font-family: -apple-system, system-ui, "Segoe UI", Roboto, Arial, sans-serif; -webkit-text-size-adjust: 100%; }
+  html, body { margin: 0; background: #1C1C1E; color: #fff; font-family: -apple-system, system-ui, "Segoe UI", Roboto, Arial, sans-serif; }
   .wrap { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 20px; text-align: center; }
   img.logo { width: 96px; height: 96px; border-radius: 24px; margin-bottom: 18px; }
-  h1 { font-size: 26px; line-height: 1.25; margin: 0 0 8px; max-width: 340px; overflow-wrap: anywhere; }
-  .nick { display: inline-block; max-width: 100%; overflow-wrap: anywhere; background: #2C2C30; border-radius: 14px; padding: 8px 16px; font-size: 20px; font-weight: 800; margin: 10px 0 6px; }
+  h1 { font-size: 26px; margin: 0 0 8px; }
+  .nick { display: inline-block; background: #2C2C30; border-radius: 14px; padding: 8px 16px; font-size: 20px; font-weight: 800; margin: 10px 0 6px; }
   p { color: #B8B8BE; font-size: 16px; line-height: 1.5; margin: 6px 0; max-width: 340px; }
   a.btn { display: block; width: 100%; max-width: 340px; padding: 16px; border-radius: 16px; font-size: 17px; font-weight: 800; text-decoration: none; margin-top: 12px; }
-  .stores { display: flex; flex-direction: column; align-items: center; width: 100%; }
   .main { background: #D7F36B; color: #1C1C1E; }
   .alt { background: #2C2C30; color: #fff; }
-  a.btn:focus-visible, footer a:focus-visible { outline: 3px solid #D7F36B; outline-offset: 3px; }
   .small { font-size: 13px; color: #8A8A90; margin-top: 18px; }
-  .small:empty { display: none; }
-  ul.features { list-style: none; padding: 0; margin: 28px 0 0; width: 100%; max-width: 340px; text-align: left; }
-  ul.features li { background: #2C2C30; border-radius: 14px; padding: 12px 14px; margin-top: 8px; color: #B8B8BE; font-size: 15px; line-height: 1.45; }
-  ul.features b { color: #fff; }
-  footer { margin-top: 28px; font-size: 14px; display: flex; flex-wrap: wrap; justify-content: center; column-gap: 20px; }
-  footer a { color: #B8B8BE; display: inline-block; padding: 10px 4px; }
-  .nw { white-space: nowrap; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <img class="logo" src="icon.png" alt="FreeTime" width="96" height="96">
-  <h1 id="title">FreeTime - <span class="nw">Who's Free</span></h1>
+  <img class="logo" src="icon.png" alt="FreeTime">
+  <h1 id="title">Add me on FreeTime 👋</h1>
   <div class="nick" id="nick" style="display:none"></div>
-  <p>See which friends are free between classes and meet students on your campus. Free for Assumption University students.</p>
-  <a class="btn main" id="open" href="#" style="display:none">Open FreeTime</a>
-  <div class="stores" id="stores">
-    <a class="btn main" id="ios" href="https://apps.apple.com/app/id6825707100">Download on the App Store</a>
-    <a class="btn alt" id="android" href="https://play.google.com/store/apps/details?id=com.freetimecampus.app">Get it on Google Play</a>
-  </div>
-  <p class="small" id="note"></p>
-  <ul class="features">
-    <li><b>Who's free now</b> &ndash; add your timetable and see which friends are free between classes.</li>
-    <li><b>Class chats and groups</b> &ndash; every class has its own chat, and you can make groups with friends.</li>
-    <li><b>Open table</b> &ndash; meet other students who are free at the same time.</li>
-    <li><b>Seminar reminders and the university calendar</b> &ndash; never miss a seminar, holiday or exam week.</li>
-  </ul>
-  <footer><a href="privacy/">Privacy Policy</a> <a href="terms/">Terms of Use</a> <a href="mailto:freetime.app.help@gmail.com">Contact</a></footer>
+  <p>See when your friends are free and meet students on your campus.</p>
+  <a class="btn main" id="open" href="#">Open FreeTime</a>
+  <a class="btn alt" id="get" href="#">Get the app</a>
+  <p class="small" id="note">Already have FreeTime? Tap “Open FreeTime”.</p>
 </div>
 <script>
 // ---- Settings ----
@@ -85,44 +58,37 @@ if (/ Line\//i.test(ua) && q.get('openExternalBrowser') !== '1') {
   location.replace(location.pathname + '?' + q.toString());
 }
 
-var openBtn = document.getElementById('open');
-var iosBtn = document.getElementById('ios');
-var androidBtn = document.getElementById('android');
-var stores = document.getElementById('stores');
-var note = document.getElementById('note');
-
 if (nick) {
-  document.getElementById('title').textContent = 'Add me on FreeTime 👋';
   document.getElementById('nick').textContent = '@' + nick;
   document.getElementById('nick').style.display = 'inline-block';
 }
 
 var appLink = 'freetime://add/' + encodeURIComponent(nick);
+var store = isIOS ? (APPSTORE || '') : PLAY;
 // On Android this one link opens the app if it is installed, and Google Play if it is not.
 var androidLink = 'intent://add/' + encodeURIComponent(nick) + '#Intent;scheme=freetime;package=' + PKG + ';S.browser_fallback_url=' + encodeURIComponent(PLAY) + ';end';
 
-// The phone's own store goes first as the big button; the other store stays as a second button.
-if (isAndroid) {
-  androidBtn.className = 'btn main'; iosBtn.className = 'btn alt';
-  stores.insertBefore(androidBtn, iosBtn);
+var openBtn = document.getElementById('open');
+var getBtn = document.getElementById('get');
+openBtn.href = nick ? (isAndroid ? androidLink : appLink) : (isAndroid ? PLAY : (store || '#'));
+if (store) getBtn.href = store;
+else { getBtn.removeAttribute('href'); getBtn.textContent = 'iPhone version coming soon'; getBtn.style.opacity = '0.6'; }
+if (!nick) { document.getElementById('note').textContent = ''; if (!isAndroid) openBtn.style.display = 'none'; }
+// On a computer: FreeTime is a phone app, so no "Open FreeTime" button (it cannot open anything there).
+if (!isAndroid && !isIOS) {
+  openBtn.style.display = 'none';
+  getBtn.textContent = 'Get it on Google Play';
+  document.getElementById('note').textContent = 'FreeTime is a phone app. Open this link on your phone' + (nick ? ' to add @' + nick + '.' : '.');
 }
 
-if (nick && isAndroid) {
-  openBtn.href = androidLink; openBtn.style.display = 'block';
-  androidBtn.className = 'btn alt'; iosBtn.style.display = 'none';
-  note.textContent = 'Already have FreeTime? Tap “Open FreeTime”.';
-} else if (nick && isIOS) {
-  // iPhone: Safari shows an error box when FreeTime is not installed and the app link is opened,
-  // so the big button goes to the App Store (it shows "Open" there if FreeTime is installed),
-  // and opening the app straight away is a second button for students who already have it.
-  openBtn.href = appLink; openBtn.className = 'btn alt'; openBtn.textContent = 'I already have FreeTime';
-  openBtn.style.display = 'block';
-  stores.parentNode.insertBefore(openBtn, stores.nextSibling);
-  androidBtn.style.display = 'none';
-  note.textContent = 'Already have FreeTime? Tap “I already have FreeTime” to add @' + nick + '.';
-} else if (!isAndroid && !isIOS) {
-  // On a computer: FreeTime is a phone app, so there is no "Open FreeTime" button.
-  note.textContent = nick ? 'FreeTime is a phone app. Open this link on your phone to add @' + nick + '.' : 'FreeTime is a phone app for iPhone and Android.';
+// iPhone: Safari shows an error box when FreeTime is not installed and "Open FreeTime" is tapped,
+// so on iPhone the big button goes to the App Store (it shows "Open" there if FreeTime is installed),
+// and opening the app straight away is a small second button for students who already have it.
+if (isIOS && store) {
+  getBtn.className = 'btn main'; getBtn.textContent = 'Get FreeTime on the App Store';
+  openBtn.className = 'btn alt'; openBtn.textContent = 'I already have FreeTime';
+  if (openBtn.parentNode) openBtn.parentNode.insertBefore(getBtn, openBtn);
+  document.getElementById('note').textContent = nick ? 'Already have FreeTime? Tap "I already have FreeTime" to add @' + nick + '.' : '';
 }
 
 // ---- Counting visits (anonymous: only "a visit", the phone type, and the ?s= source; no IP, no name) ----
@@ -138,9 +104,8 @@ function track(kind) {
   } catch (e) {}
 }
 track('view');
-iosBtn.addEventListener('click', function () { track('store'); });
-androidBtn.addEventListener('click', function () { track('store'); });
-openBtn.addEventListener('click', function () { track('open'); });
+getBtn.addEventListener('click', function () { track('store'); });
+openBtn.addEventListener('click', function () { track(openBtn.href.indexOf('play.google') >= 0 || openBtn.href.indexOf('apps.apple') >= 0 ? 'store' : 'open'); });
 
 // Android: open the app straight away (or Google Play if it is not installed).
 // iPhone: wait for a tap, because Safari shows an error box if the app is not installed.
