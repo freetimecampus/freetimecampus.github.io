@@ -64,6 +64,8 @@ if (nick) {
 }
 
 var appLink = 'freetime://add/' + encodeURIComponent(nick);
+// Google Play passes this to FreeTime after install, so a new student sees "Your first friend" right after sign-up.
+if (nick) PLAY = PLAY + '&referrer=' + encodeURIComponent('u=' + nick);
 var store = isIOS ? (APPSTORE || '') : PLAY;
 // On Android this one link opens the app if it is installed, and Google Play if it is not.
 var androidLink = 'intent://add/' + encodeURIComponent(nick) + '#Intent;scheme=freetime;package=' + PKG + ';S.browser_fallback_url=' + encodeURIComponent(PLAY) + ';end';
