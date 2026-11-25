@@ -45,6 +45,12 @@ var APPSTORE = 'https://apps.apple.com/app/id6825707100';
 var q = new URLSearchParams(location.search);
 var nick = (q.get('u') || '').trim().replace(/^@/, '');
 try { if (!/^[\p{L}\p{M}\p{N}_.\-]{1,40}$/u.test(nick)) nick = ''; } catch (e) { if (/[<>"'&\s]/.test(nick)) nick = ''; }
+// A shared post: ...github.io/?p=<post id>. The post itself is never shown here (only students on FreeTime see it).
+var post = (q.get('p') || '').trim().toLowerCase();
+if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(post)) post = '';
+if (post) nick = '';
+var path = post ? 'post/' + post : 'add/' + encodeURIComponent(nick);
+var target = !!(nick || post);
 
 var ua = navigator.userAgent || '';
 var isAndroid = /Android/i.test(ua);
@@ -58,24 +64,28 @@ if (/ Line\//i.test(ua) && q.get('openExternalBrowser') !== '1') {
   location.replace(location.pathname + '?' + q.toString());
 }
 
+if (post) {
+  document.getElementById('title').textContent = 'A post on FreeTime 📸';
+  document.querySelector('.wrap > p').textContent = 'Open it in FreeTime to see it. Posts are only for students on FreeTime.';
+}
 if (nick) {
   document.getElementById('nick').textContent = '@' + nick;
   document.getElementById('nick').style.display = 'inline-block';
 }
 
-var appLink = 'freetime://add/' + encodeURIComponent(nick);
+var appLink = 'freetime://' + path;
 // Google Play passes this to FreeTime after install, so a new student sees "Your first friend" right after sign-up.
 if (nick) PLAY = PLAY + '&referrer=' + encodeURIComponent('u=' + nick);
 var store = isIOS ? (APPSTORE || '') : PLAY;
 // On Android this one link opens the app if it is installed, and Google Play if it is not.
-var androidLink = 'intent://add/' + encodeURIComponent(nick) + '#Intent;scheme=freetime;package=' + PKG + ';S.browser_fallback_url=' + encodeURIComponent(PLAY) + ';end';
+var androidLink = 'intent://' + path + '#Intent;scheme=freetime;package=' + PKG + ';S.browser_fallback_url=' + encodeURIComponent(PLAY) + ';end';
 
 var openBtn = document.getElementById('open');
 var getBtn = document.getElementById('get');
-openBtn.href = nick ? (isAndroid ? androidLink : appLink) : (isAndroid ? PLAY : (store || '#'));
+openBtn.href = target ? (isAndroid ? androidLink : appLink) : (isAndroid ? PLAY : (store || '#'));
 if (store) getBtn.href = store;
 else { getBtn.removeAttribute('href'); getBtn.textContent = 'iPhone version coming soon'; getBtn.style.opacity = '0.6'; }
-if (!nick) { document.getElementById('note').textContent = ''; if (!isAndroid) openBtn.style.display = 'none'; }
+if (!target) { document.getElementById('note').textContent = ''; if (!isAndroid) openBtn.style.display = 'none'; }
 // On a computer: FreeTime is a phone app, so no "Open FreeTime" button - the two store buttons instead.
 if (!isAndroid && !isIOS) {
   // Both stores, two equal buttons.
@@ -93,7 +103,7 @@ if (isIOS && store) {
   getBtn.className = 'btn main'; getBtn.textContent = 'Get FreeTime on the App Store';
   openBtn.className = 'btn alt'; openBtn.textContent = 'I already have FreeTime';
   if (openBtn.parentNode) openBtn.parentNode.insertBefore(getBtn, openBtn);
-  document.getElementById('note').textContent = nick ? 'Already have FreeTime? Tap "I already have FreeTime" to add @' + nick + '.' : '';
+  document.getElementById('note').textContent = nick ? 'Already have FreeTime? Tap "I already have FreeTime" to add @' + nick + '.' : post ? 'Already have FreeTime? Tap "I already have FreeTime" to see the post.' : '';
 }
 
 // ---- Counting visits (anonymous: only "a visit", the phone type, and the ?s= source; no IP, no name) ----
@@ -114,7 +124,7 @@ openBtn.addEventListener('click', function () { track(openBtn.href.indexOf('play
 
 // Android: open the app straight away (or Google Play if it is not installed).
 // iPhone: wait for a tap, because Safari shows an error box if the app is not installed.
-if (nick && isAndroid && !leaving) {
+if (target && isAndroid && !leaving) {
   setTimeout(function () { location.href = androidLink; }, 300);
 }
 </script>
